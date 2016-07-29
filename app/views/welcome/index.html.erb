@@ -1,0 +1,16 @@
+<h1>Welcome to my Travel Site</h1>
+<p>This is my very first trip away from <%= @homeland %>!</p>
+<p>But I really want to visit ...</p>
+<ul>
+  <% @countries.each do |country| %>
+    <li><%= country %></li>
+  <% end %>
+</ul>
+
+<% @images.each do |pic| %>
+  <%= image_tag pic, class:"img-responsive" %>
+<% end %>
+
+<div id="map-canvas">
+  
+</div>

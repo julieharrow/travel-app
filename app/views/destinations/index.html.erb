@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<h1>My Destination Wish List</h1>
+
+<!-- here is one way...more manual -->
+<!-- <ul class="nav nav-pills" role="tablist">
+  <li><%= link_to "All",destinations_path %></li>
+  <li><%= link_to "France",destinations_path(country:"france") %></li>
+  <li><%= link_to "Italy",destinations_path(country:"italy") %></li>
+  <li><%= link_to "South Africa",destinations_path(country:"south africa") %></li>
+</ul> -->
+
+<!-- but here is a better way...a lot more efficient -->
+<ul class="nav nav-pills" role="tablist">
+  <li><%= link_to "All",destinations_path %></li>
+  <% @my_countries.each do |c| %>
+  <li> <%= link_to c.country, destinations_path(country: c.country) %> </li>
+  <% end %>
+</ul>
+
+<div class="row">
+    <% @destinations.each do |destination| %>
+      <div class="col-md-4">
+       <div class="panel panel-default">
+        <div class="panel-body">
+         <h2><%= destination.city %></h2>
+         <%= image_tag destination.avatar.url(:thumb) %>
+         <p>Population: <%= destination.population %></p>
+         <h3><%= destination.country %></h3>
+         <p><%= destination.description %></p>
+
+         <div class="btn-group">
+          <%= link_to 'Show', destination, class: "btn btn-default" %>
+          <%= link_to 'Edit', edit_destination_path(destination), class: "btn btn-default" %>
+          <%= link_to 'Destroy', destination, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
+         </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+<br>
+
+<%= link_to 'New Destination', new_destination_path %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @destination.city %>, <%= @destination.country %></h1>
+<p><strong>Population </strong><%= @destination.population %></p>
+
+<h1><%= @destination.address %></h1>
+
+<p><%= @destination.latitude %>, <%= @destination.longitude %></p>
+
+<p><%= @destination.description %></p>
+
+<%= image_tag @destination.avatar.url(:medium) %>
+
+<p><strong>Description </strong> <%= @destination.description %> </p>
+
+<div id="destination-map"></div>
+
+<div class = "btn-group">
+
+  <%= link_to 'Edit', edit_destination_path(@destination),class:"btn btn-default" %>
+  <%= link_to 'Back', destinations_path,class:"btn btn-default" %>
+</div>
+
+<%= javascript_tag do %>
+   latitude = '<%= j @destination.latitude.to_s %>';
+   longitude = '<%= j @destination.longitude.to_s %>';
+   address = '<%= j @destination.address %>';
+   description = '<%= j @destination.description %>';
+<% end %>
